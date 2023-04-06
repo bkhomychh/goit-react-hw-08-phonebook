@@ -1,22 +1,39 @@
-import { ContactForm } from 'components/ContactForm';
-import { Filter } from 'components/Filter';
-import { ContactList } from 'components/ContactList';
-import { ToastContainer } from 'react-toastify';
+import { Routes, Route } from 'react-router-dom';
 
-import { Wrapper, Container, Title, Heading } from './App.styled';
+import Layout from 'components/Layout';
+import PrivateRoute from 'components/PrivateRoute';
+import RestrictedRoute from 'components/RestrictedRoute';
+import Contacts from 'pages/Contacts';
+import Home from 'pages/Home';
+
 import 'react-toastify/dist/ReactToastify.css';
+import Login from 'pages/Login';
+import Register from 'pages/Register';
 
 export const App = () => {
   return (
-    <Wrapper>
-      <Container>
-        <Title>Phonebook</Title>
-        <ContactForm />
-        <Heading>Contacts</Heading>
-        <Filter />
-        <ContactList />
-        <ToastContainer autoClose={4000} limit={3} theme="colored" />
-      </Container>
-    </Wrapper>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Contacts />} />
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };

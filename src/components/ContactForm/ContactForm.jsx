@@ -8,7 +8,7 @@ import { Form, Label, AddBtn } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const toastId = useRef(null);
 
   const contacts = useSelector(getContacts);
@@ -16,7 +16,7 @@ export const ContactForm = () => {
 
   const resetState = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -24,8 +24,8 @@ export const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         toast.error('This field does not exist');
@@ -47,7 +47,7 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     resetState();
   };
 
@@ -69,11 +69,11 @@ export const ContactForm = () => {
         Phone number
         <input
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
+          value={number}
           onChange={handleChange}
         />
       </Label>

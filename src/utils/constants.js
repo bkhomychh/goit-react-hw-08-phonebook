@@ -1,3 +1,5 @@
+export const BASE_URL = 'https://connections-api.herokuapp.com';
+
 export const theme = {
   color: {
     textPrimary: '#181818',

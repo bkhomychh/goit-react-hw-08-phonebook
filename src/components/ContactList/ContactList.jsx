@@ -28,8 +28,8 @@ export const ContactList = () => {
     <Wrapper>
       {filteredContacts.length > 0 && (
         <StyledList>
-          {filteredContacts.map(({ id, name, phone }) => (
-            <Contact id={id} name={name} phone={phone} key={id} />
+          {filteredContacts.map(({ id, name, number }) => (
+            <Contact id={id} name={name} number={number} key={id} />
           ))}
         </StyledList>
       )}
