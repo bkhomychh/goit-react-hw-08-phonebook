@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color.bgPrimary};
 
   box-shadow: 0px 141px 200px -80px rgba(25, 58, 75, 0.3);
-  border-radius: 50px;
+  border-radius: 32px;
 `;
 
 export const StyledList = styled.ul`

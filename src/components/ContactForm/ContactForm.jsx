@@ -4,7 +4,8 @@ import { getContacts } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 import { toast } from 'react-toastify';
 
-import { Form, Label, AddBtn } from './ContactForm.styled';
+import Button from 'components/Button';
+import { Form, Label } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -77,7 +78,7 @@ export const ContactForm = () => {
           onChange={handleChange}
         />
       </Label>
-      <AddBtn type="submit">Add contact</AddBtn>
+      <Button type="submit">Add contact</Button>
     </Form>
   );
 };

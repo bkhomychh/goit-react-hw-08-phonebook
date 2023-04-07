@@ -7,7 +7,7 @@ export const theme = {
     textAccent: '#ffffff',
 
     bgPrimary: '#ffffff',
-    bgSecondary: '#CFDBE4',
+    bgSecondary: '#CFDBEC',
     bgAccent: '#2156f1',
     bgInfo: '#4285F4',
     bgSuccess: '#01d464',

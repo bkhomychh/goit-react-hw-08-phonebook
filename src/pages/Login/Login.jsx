@@ -2,9 +2,21 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
+import Button from 'components/Button';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import {
+  Title,
+  LoginForm,
+  Label,
+  Box,
+  InputField,
+  PasswordToggle,
+} from './Login.styled';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
@@ -28,19 +40,33 @@ export default function Login() {
     dispatch(authOperations.logIn(credentials));
   };
 
+  const togglePassword = () => {
+    setIsPasswordShown(state => !state);
+  };
+
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email <input type="email" name="email" onChange={handleChange} />
-        </label>
-        <label>
-          Password
-          <input type="password" name="password" onChange={handleChange} />
-        </label>
-        <button>Log in</button>
-      </form>
-    </div>
+    <>
+      <Title>Login</Title>
+      <LoginForm onSubmit={handleSubmit}>
+        <Label>
+          Email
+          <InputField type="email" name="email" onChange={handleChange} />
+        </Label>
+
+        <Label htmlFor="password">Password</Label>
+        <Box>
+          <InputField
+            id="password"
+            type={isPasswordShown ? 'text' : 'password'}
+            name="password"
+            onChange={handleChange}
+          />
+          <PasswordToggle onClick={togglePassword}>
+            {isPasswordShown ? <BsEye /> : <BsEyeSlash />}
+          </PasswordToggle>
+        </Box>
+        <Button>Log in</Button>
+      </LoginForm>
+    </>
   );
 }

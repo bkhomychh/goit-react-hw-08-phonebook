@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Button from 'components/Button';
+import { Wrapper, Username, AuthLinks } from './UserMenu.styled';
+
 import { authSelectors } from 'redux/auth';
 import { logOut } from 'redux/auth/authOperations';
 
@@ -14,25 +17,25 @@ const UserMenu = () => {
   };
 
   return (
-    <div>
+    <Wrapper>
       {isLoggedIn ? (
         <>
-          <p>{username ? username : 'Anonymous'}</p>
-          <button type="button" onClick={handleLogOut}>
+          <Username>{username ? username : 'Anonymous'}</Username>
+          <Button type="button" onClick={handleLogOut}>
             Log out
-          </button>
+          </Button>
         </>
       ) : (
-        <ul>
+        <AuthLinks>
           <li>
             <Link to="/login">Log in</Link>
           </li>
           <li>
             <Link to="/register">Sign up</Link>
           </li>
-        </ul>
+        </AuthLinks>
       )}
-    </div>
+    </Wrapper>
   );
 };
 

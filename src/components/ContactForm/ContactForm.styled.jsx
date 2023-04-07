@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  padding: 50px 100px;
-  margin-bottom: 20px;
+  padding: 30px 50px;
+  margin: 0 auto 20px;
+  max-width: 550px;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 
   font-weight: 500;
@@ -13,8 +15,8 @@ export const Form = styled.form`
   color: ${({ theme }) => theme.color.textSecondary};
   background-color: ${({ theme }) => theme.color.bgPrimary};
 
-  box-shadow: 0px 141px 200px -80px rgba(25, 58, 75, 0.3);
-  border-radius: 50px;
+  box-shadow: 0px 0px 32px 4px rgba(25, 58, 75, 0.2);
+  border-radius: 32px;
 `;
 
 export const Label = styled.label`
@@ -22,41 +24,20 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 
   font-size: ${({ theme }) => `3px solid ${theme.fontSize.headingPrimary}`};
 
   input {
     padding: 10px 20px;
 
-    outline: none;
-    border: none;
+    font-size: ${({ theme }) => `${theme.fontSize.textSecondary}`};
     border-bottom: ${({ theme }) => `2px solid ${theme.color.bgSecondary}`};
-
     transition: ${({ theme }) =>
       `all 250ms ${theme.transition.primaryCubicBezier}`};
 
     &:focus {
       border-color: ${({ theme }) => theme.color.bgAccent};
     }
-  }
-`;
-
-export const AddBtn = styled.button`
-  padding: 10px 20px;
-  width: 150px;
-  margin: 0 auto;
-
-  text-transform: uppercase;
-  font-weight: 700;
-  background-color: ${({ theme }) => theme.color.bgPrimary};
-  border: ${({ theme }) => `2px solid ${theme.color.bgSecondary}`};
-  border-radius: 20px;
-
-  cursor: pointer;
-  transition: all 250ms ease-in-out;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.color.bgSuccess};
-    color: ${({ theme }) => theme.color.textAccent};
   }
 `;

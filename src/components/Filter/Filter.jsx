@@ -20,6 +20,7 @@ export const Filter = () => {
         name="filter"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         value={filter}
+        placeholder="Contact name..."
         onChange={handleChange}
       />
     </Label>

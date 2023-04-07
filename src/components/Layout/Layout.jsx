@@ -4,25 +4,54 @@ import Navigation from 'components/Navigation';
 import UserMenu from 'components/UserMenu';
 
 import { ToastContainer } from 'react-toastify';
-import { Wrapper, Container, Header } from './Layout.styled';
+import {
+  Wrapper,
+  Container,
+  Box,
+  Header,
+  Main,
+  Footer,
+  Signature,
+} from './Layout.styled';
+import { BsGithub } from 'react-icons/bs';
+import { GlobalStyle } from 'utils/globalStyles';
 
 const Layout = () => {
   return (
     <>
       <Wrapper>
-        <Container>
-          <Header>
-            <Navigation />
-            <UserMenu />
-          </Header>
+        <Header>
+          <Container>
+            <Box>
+              <Navigation />
+              <UserMenu />
+            </Box>
+          </Container>
+        </Header>
 
-          <main>
+        <Main>
+          <Container>
             <Outlet />
-          </main>
+          </Container>
+        </Main>
 
-          <footer></footer>
-          <ToastContainer autoClose={4000} limit={3} theme="colored" />
-        </Container>
+        <Footer>
+          <Container>
+            <Signature>
+              Created by
+              <a
+                href="https://github.com/bkhomychh"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+              >
+                bkhomychh
+                <BsGithub />
+              </a>
+            </Signature>
+          </Container>
+        </Footer>
+        <GlobalStyle />
+        <ToastContainer autoClose={4000} limit={3} theme="colored" />
       </Wrapper>
     </>
   );

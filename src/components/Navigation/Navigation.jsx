@@ -2,19 +2,20 @@ import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 
+import { NavBar, Logo, LinkList } from './Navigation.styled';
 import { FaPhoneSquareAlt } from 'react-icons/fa';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
 
   return (
-    <nav>
-      <Link to="/">
+    <NavBar>
+      <Logo to="/">
         <FaPhoneSquareAlt />
         PhoneBook
-      </Link>
+      </Logo>
 
-      <ul>
+      <LinkList>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
@@ -23,8 +24,8 @@ const Navigation = () => {
             <NavLink to="/contacts">Contacts</NavLink>
           </li>
         )}
-      </ul>
-    </nav>
+      </LinkList>
+    </NavBar>
   );
 };
 

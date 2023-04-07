@@ -1,18 +1,20 @@
 import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 
+import { Box, Title, Text } from './Home.styled';
+
 export default function Home() {
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
 
   return (
-    <>
-      <h1>PhoneBook</h1>
+    <Box>
+      <Title>PhoneBook</Title>
 
       {isLoggedIn ? (
-        <b>Create a personal phone book and manage your contacts</b>
+        <Text>Create a personal phone book and manage your contacts</Text>
       ) : (
-        <b>Please log in or sign up to get started</b>
+        <Text>Please log in or sign up to get started</Text>
       )}
-    </>
+    </Box>
   );
 }

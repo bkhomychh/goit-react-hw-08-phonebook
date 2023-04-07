@@ -9,7 +9,6 @@ import { App } from 'components/App';
 import { store, persistor } from 'redux/store';
 import { theme } from 'utils/constants';
 
-import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeProvider } from 'styled-components';
 
