@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BsCheckLg } from 'react-icons/bs';
 
 export const Title = styled.h1`
   margin-bottom: 24px;
@@ -15,7 +16,6 @@ export const RegistrationForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
 
   border-radius: 32px;
   background-color: ${({ theme }) => theme.color.bgPrimary};
@@ -23,22 +23,24 @@ export const RegistrationForm = styled.form`
 `;
 
 export const Label = styled.label`
+  margin-bottom: 16px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 
   font-size: ${({ theme }) => `${theme.fontSize.textPrimary}`};
+  font-weight: 500;
 `;
 
 export const Box = styled.div`
   position: relative;
-
   width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const InputField = styled.input`
-  padding: 10px 40px 10px 20px;
+  padding: 0px 40px 10px 20px;
   width: 100%;
 
   font-size: ${({ theme }) => `${theme.fontSize.textSecondary}`};
@@ -51,6 +53,16 @@ export const InputField = styled.input`
   }
 `;
 
+export const ErrorMessage = styled.p`
+  position: absolute;
+  top: 110%;
+  left: 0;
+
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.color.bgError};
+`;
+
 export const PasswordToggle = styled.button`
   position: absolute;
   top: 50%;
@@ -60,5 +72,14 @@ export const PasswordToggle = styled.button`
   display: flex;
 
   background-color: transparent;
+  transform: translateY(-50%);
+`;
+
+export const Check = styled(BsCheckLg)`
+  position: absolute;
+  top: 50%;
+  left: 102%;
+
+  color: ${({ theme }) => theme.color.bgSuccess};
   transform: translateY(-50%);
 `;

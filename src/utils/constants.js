@@ -11,7 +11,7 @@ export const theme = {
     bgAccent: '#2156f1',
     bgInfo: '#4285F4',
     bgSuccess: '#01d464',
-    bgDanger: '#ff2003',
+    bgError: '#ff2003',
   },
   fontSize: {
     title: '32px',

@@ -2,6 +2,8 @@ import Button from 'components/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import {
@@ -11,38 +13,32 @@ import {
   Box,
   InputField,
   PasswordToggle,
+  ErrorMessage,
+  Check,
 } from './Register.styled';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const dispatch = useDispatch();
-
-  const handleChange = ({ target }) => {
-    switch (target.name) {
-      case 'name':
-        return setName(target.value);
-      case 'email':
-        return setEmail(target.value);
-      case 'password':
-        return setPassword(target.value);
-      default:
-        console.log('This field does not exist');
-    }
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-
-    const credentials = {
-      name,
-      email,
-      password,
-    };
-    dispatch(authOperations.register(credentials));
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(4, 'Must be at least 4 characters long')
+        .required('Required'),
+      email: Yup.string().email('Invalid email address').required('Required'),
+      password: Yup.string()
+        .min(7, 'Must be at least 7 characters long')
+        .required('Required'),
+    }),
+    onSubmit(values) {
+      dispatch(authOperations.register(values));
+    },
+  });
 
   const togglePassword = () => {
     setIsPasswordShown(state => !state);
@@ -51,24 +47,66 @@ export default function Register() {
   return (
     <>
       <Title>Registration</Title>
-      <RegistrationForm onSubmit={handleSubmit} autoComplete="off">
-        <Label>
-          Name <InputField type="text" name="name" onChange={handleChange} />
-        </Label>
-        <Label>
-          Email <InputField type="email" name="email" onChange={handleChange} />
-        </Label>
+      <RegistrationForm
+        onSubmit={formik.handleSubmit}
+        autoComplete="off"
+        noValidate
+      >
+        <Label htmlFor="name">Name</Label>
+        <Box>
+          <InputField
+            id="name"
+            type="text"
+            name="name"
+            value={formik.values.name}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+          />
+          {/* Error message */}
+          {formik.touched.name && formik.errors.name && (
+            <ErrorMessage>{formik.errors.name}</ErrorMessage>
+          )}
+          {/* Success */}
+          {formik.touched.name && !formik.errors.name && <Check />}
+        </Box>
+
+        <Label htmlFor="email">Email</Label>
+        <Box>
+          <InputField
+            id="email"
+            type="email"
+            name="email"
+            value={formik.values.email}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+          />
+          {/* Error message */}
+          {formik.touched.email && formik.errors.email && (
+            <ErrorMessage>{formik.errors.email}</ErrorMessage>
+          )}
+          {/* Success */}
+          {formik.touched.email && !formik.errors.email && <Check />}
+        </Box>
+
         <Label htmlFor="password">Password</Label>
         <Box>
           <InputField
             id="password"
             type={isPasswordShown ? 'text' : 'password'}
             name="password"
-            onChange={handleChange}
+            value={formik.values.password}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
           />
-          <PasswordToggle onClick={togglePassword}>
+          <PasswordToggle type="button" onClick={togglePassword}>
             {isPasswordShown ? <BsEye /> : <BsEyeSlash />}
           </PasswordToggle>
+          {/* Error message */}
+          {formik.touched.password && formik.errors.password && (
+            <ErrorMessage>{formik.errors.password}</ErrorMessage>
+          )}
+          {/* Success */}
+          {formik.touched.password && !formik.errors.password && <Check />}
         </Box>
         <Button type="submit">Register</Button>
       </RegistrationForm>
