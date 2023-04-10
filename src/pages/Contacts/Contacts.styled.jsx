@@ -15,6 +15,12 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.bgSecondary};
 `;
 
+export const Box = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const Title = styled.h1`
   margin-bottom: 20px;
 
