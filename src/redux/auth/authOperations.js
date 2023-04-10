@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+import updateToast from 'utils/updateToast';
 import { BASE_URL } from 'utils/constants';
 
 axios.defaults.baseURL = BASE_URL;
@@ -23,22 +24,20 @@ export const register = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/signup', credentials);
       token.set(data.token);
-      toast.update(toastId, {
-        render: 'Registration was successful',
+      updateToast({
+        id: toastId,
         type: 'success',
-        isLoading: false,
-        autoClose: 4000,
+        text: 'Registration was successful',
       });
 
       return data;
-    } catch (err) {
-      const errorMessage = err.response.data.message;
-      toast.update(toastId, {
-        render: errorMessage,
+    } catch {
+      updateToast({
+        id: toastId,
         type: 'error',
-        isLoading: false,
-        autoClose: 4000,
+        text: 'Incorrect credentials',
       });
+
       return thunkAPI.rejectWithValue();
     }
   }
@@ -52,20 +51,18 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/login', credentials);
       token.set(data.token);
-      toast.update(toastId, {
-        render: 'Welcome back!',
+      updateToast({
+        id: toastId,
         type: 'success',
-        isLoading: false,
-        autoClose: 4000,
+        text: 'Welcome back!',
       });
 
       return data;
     } catch {
-      toast.update(toastId, {
-        render: 'Incorrect credentials',
+      updateToast({
+        id: toastId,
         type: 'error',
-        isLoading: false,
-        autoClose: 4000,
+        text: 'Incorrect credentials',
       });
       return thunkAPI.rejectWithValue();
     }
@@ -78,20 +75,18 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/logout');
     token.clear();
-    toast.update(toastId, {
-      render: 'See you next time',
+    updateToast({
+      id: toastId,
       type: 'success',
-      isLoading: false,
-      autoClose: 4000,
+      text: 'See you next time',
     });
 
     return data;
   } catch (err) {
-    toast.update(toastId, {
-      render: err.message,
+    updateToast({
+      id: toastId,
       type: 'error',
-      isLoading: false,
-      autoClose: 4000,
+      text: err.message,
     });
 
     return thunkAPI.rejectWithValue();

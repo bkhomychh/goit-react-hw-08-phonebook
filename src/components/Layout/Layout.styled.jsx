@@ -40,6 +40,7 @@ export const Header = styled.header`
   z-index: 10;
 
   padding: 24px 0;
+  min-width: 480px;
 
   background-color: ${({ theme }) => theme.color.bgSecondary};
   box-shadow: ${({ theme }) => `0px 0px 3px ${theme.color.textSecondary}`};
@@ -48,12 +49,14 @@ export const Header = styled.header`
 export const Main = styled.main`
   padding: 48px 0;
   flex-grow: 1;
+  min-width: 480px;
 
   background-color: ${({ theme }) => theme.color.bgPrimary};
 `;
 
 export const Footer = styled.footer`
   padding: 32px 0;
+  min-width: 480px;
 
   background-color: ${({ theme }) => theme.color.bgSecondary};
   box-shadow: ${({ theme }) => `0px 0px 3px ${theme.color.textSecondary}`};
