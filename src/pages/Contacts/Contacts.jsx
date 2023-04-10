@@ -25,7 +25,7 @@ export default function Contacts() {
         <Heading>Contacts</Heading>
         <Button onClick={openModal}>
           <IoMdAddCircleOutline />
-          Add new contact
+          Add contact
         </Button>
       </Box>
 

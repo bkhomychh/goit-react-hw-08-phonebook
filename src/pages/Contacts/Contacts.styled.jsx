@@ -16,6 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,7 +29,5 @@ export const Title = styled.h1`
 `;
 
 export const Heading = styled.h2`
-  margin-bottom: 15px;
-
   font-size: ${({ theme }) => theme.fontSize.headingPrimary};
 `;

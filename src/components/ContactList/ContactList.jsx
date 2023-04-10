@@ -9,6 +9,7 @@ import { StyledList, Wrapper } from './ContactList.styled';
 import { contactsSelectors } from 'redux/contacts';
 import { filterSelectors } from 'redux/filter';
 import { contactsOperations } from 'redux/contacts';
+import { Box } from './ContactList.styled';
 
 export const ContactList = () => {
   const contacts = useSelector(contactsSelectors.selectContacts);
@@ -37,7 +38,9 @@ export const ContactList = () => {
           {isLoading && <ContentLoader />}
         </Wrapper>
       ) : (
-        <p>There are no contacts :(</p>
+        <Box>
+          {isLoading ? <ContentLoader /> : <p>There are no contacts :(</p>}
+        </Box>
       )}
     </>
   );
