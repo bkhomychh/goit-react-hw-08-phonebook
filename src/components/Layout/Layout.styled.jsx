@@ -47,7 +47,7 @@ export const Main = styled.main`
 `;
 
 export const Footer = styled.footer`
-  padding: 24px 0;
+  padding: 32px 0;
 
   background-color: ${({ theme }) => theme.color.bgSecondary};
   box-shadow: ${({ theme }) => `0px 0px 3px ${theme.color.textSecondary}`};

@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
+import { HiOutlineEmojiSad } from 'react-icons/hi';
+import { Wrapper, Title, Text } from './NotFound.styled';
 
 export default function NotFound() {
   return (
-    <div>
-      <p>404 Page not found :(</p>
-      <Link to="/">HOME</Link>
-    </div>
+    <Wrapper>
+      <Title>Error 404</Title>
+      <Text>
+        Oops, the page you are looking for may have been moved, deleted, or
+        possibly never existed :(
+      </Text>
+      <HiOutlineEmojiSad />
+    </Wrapper>
   );
 }
