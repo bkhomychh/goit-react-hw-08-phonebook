@@ -3,18 +3,13 @@ export const BASE_URL = 'https://connections-api.herokuapp.com';
 export const theme = {
   color: {
     textPrimary: '#181818',
-    textSecondary: '#8E8E8E',
-    textAccent: '#ffffff',
+    textSecondary: '#FFFFFF',
+    textTertiary: '#8E8E8E',
 
-    // bgPrimary: '#FCFCFC',
     bgPrimary: '#FFFFFF',
-    // bgSecondary: '#F4F4F4',
-    // bgSecondary: '#CFDBEC',
     bgSecondary: '#D1E5F4',
-    // bgSecondary: '#FDFDFE',
     bgTertiary: '#F9F9F9',
-    bgAccent: '#2156f1',
-    bgInfo: '#4285F4',
+    bgAccent: '#0982FE',
     bgSuccess: '#01d464',
     bgError: '#ff2003',
   },

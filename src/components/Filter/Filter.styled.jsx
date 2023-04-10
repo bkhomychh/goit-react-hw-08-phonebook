@@ -17,6 +17,10 @@ export const SearchField = styled.input`
 
   font-size: ${({ theme }) => `${theme.fontSize.textSecondary}`};
   background-color: ${({ theme }) => `${theme.color.bgTertiary}`};
-  box-shadow: ${({ theme }) => `0 0 2px  ${theme.color.textSecondary}`};
+  box-shadow: ${({ theme }) => `0 0 2px  ${theme.color.textTertiary}`};
   border-radius: 16px;
+
+  &:focus {
+    box-shadow: ${({ theme }) => `0 0 2px  ${theme.color.bgAccent}`};
+  }
 `;

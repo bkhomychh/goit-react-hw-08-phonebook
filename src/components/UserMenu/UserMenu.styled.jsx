@@ -26,8 +26,9 @@ export const AuthLinks = styled.ul`
 
     font-size: ${({ theme }) => theme.fontSize.textSecondary};
     font-weight: 500;
-    border-radius: 12px;
+    color: ${({ theme }) => theme.color.textPrimary};
     background-color: ${({ theme }) => theme.color.bgPrimary};
+    border-radius: 12px;
 
     &:hover,
     &:focus {

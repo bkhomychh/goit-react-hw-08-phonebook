@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { useSelector, useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filter';
 import { filterSelectors } from 'redux/filter';
 
 import { Label, SearchField } from './Filter.styled';
 
-export const Filter = () => {
+export default function Filter() {
   const filter = useSelector(filterSelectors.selectFilter);
   const dispatch = useDispatch();
 
@@ -25,4 +25,4 @@ export const Filter = () => {
       />
     </Label>
   );
-};
+}

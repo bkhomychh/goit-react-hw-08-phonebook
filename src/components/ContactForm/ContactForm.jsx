@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { contactsSelectors } from 'redux/contacts';
-import { addContact, editContact } from 'redux/contacts/contactsOperations';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
 import Button from 'components/Button';
@@ -14,10 +14,11 @@ import {
   Label,
   ErrorMessage,
 } from 'styles/FormStyles';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
-export const ContactForm = props => {
+import { contactsSelectors } from 'redux/contacts';
+import { addContact, editContact } from 'redux/contacts/contactsOperations';
+
+export default function ContactForm(props) {
   const {
     contact: { id, name, number } = {},
     editing = false,
@@ -127,4 +128,10 @@ export const ContactForm = props => {
       )}
     </Form>
   );
+}
+
+ContactForm.propTypes = {
+  contact: PropTypes.object,
+  editing: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
 };

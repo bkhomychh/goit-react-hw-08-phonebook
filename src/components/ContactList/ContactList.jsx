@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Contact } from 'components/Contact';
+import Contact from 'components/Contact';
 import ContentLoader from 'components/ContentLoader';
-
-import { StyledList, Wrapper } from './ContactList.styled';
 
 import { contactsSelectors } from 'redux/contacts';
 import { filterSelectors } from 'redux/filter';
 import { contactsOperations } from 'redux/contacts';
-import { Box } from './ContactList.styled';
 
-export const ContactList = () => {
+import { StyledList, Wrapper, Box } from './ContactList.styled';
+
+export default function ContactList() {
   const contacts = useSelector(contactsSelectors.selectContacts);
   const isLoading = useSelector(contactsSelectors.selectIsLoading);
   const filter = useSelector(filterSelectors.selectFilter);
@@ -44,4 +43,4 @@ export const ContactList = () => {
       )}
     </>
   );
-};
+}

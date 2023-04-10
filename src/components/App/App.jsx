@@ -12,7 +12,7 @@ import Login from 'pages/Login';
 import Register from 'pages/Register';
 import NotFound from 'pages/NotFound';
 
-export const App = () => {
+export default function App() {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(
     authSelectors.selectIsFetchingCurrentUser
@@ -50,4 +50,4 @@ export const App = () => {
       </Route>
     </Routes>
   );
-};
+}

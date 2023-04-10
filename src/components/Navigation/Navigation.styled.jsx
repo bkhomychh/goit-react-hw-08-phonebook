@@ -20,11 +20,7 @@ export const Logo = styled(Link)`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.color.textPrimary};
-  }
-
-  svg {
-    height: 80%;
+    color: ${({ theme }) => theme.color.textSecondary};
   }
 `;
 

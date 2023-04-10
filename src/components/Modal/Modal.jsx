@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+
 import { Backdrop, ModalWindow } from './Modal.styled';
 
 const modalRoot = document.getElementById('modal-root');
 
-const Modal = ({ closeModal, children }) => {
+export default function Modal({ closeModal, children }) {
   useEffect(() => {
     const handleClick = ({ target }) => {
       const shouldCloseModal = target.classList.contains(
@@ -34,7 +35,7 @@ const Modal = ({ closeModal, children }) => {
     </Backdrop>,
     modalRoot
   );
-};
+}
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
@@ -43,5 +44,3 @@ Modal.propTypes = {
     PropTypes.node,
   ]).isRequired,
 };
-
-export default Modal;

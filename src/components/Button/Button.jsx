@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 import { StyledBtn } from './Button.styled';
 
-const Button = ({ children, ...btnProps }) => {
+export default function Button({ children, ...btnProps }) {
   return <StyledBtn {...btnProps}>{children}</StyledBtn>;
-};
-
-export default Button;
+}
 
 Button.propTypes = {
   children: PropTypes.oneOfType([

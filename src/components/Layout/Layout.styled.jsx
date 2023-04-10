@@ -42,8 +42,10 @@ export const Header = styled.header`
   padding: 24px 0;
   min-width: 480px;
 
+  color: ${({ theme }) => theme.color.textSecondary};
   background-color: ${({ theme }) => theme.color.bgSecondary};
-  box-shadow: ${({ theme }) => `0px 0px 3px ${theme.color.textSecondary}`};
+  box-shadow: ${({ theme }) => `0px 0px 5px 3px ${theme.color.textTertiary}`};
+  background: linear-gradient(to right, rgb(30, 30, 30), rgb(60, 60, 60));
 `;
 
 export const Main = styled.main`
@@ -58,8 +60,10 @@ export const Footer = styled.footer`
   padding: 32px 0;
   min-width: 480px;
 
+  color: ${({ theme }) => theme.color.textSecondary};
   background-color: ${({ theme }) => theme.color.bgSecondary};
-  box-shadow: ${({ theme }) => `0px 0px 3px ${theme.color.textSecondary}`};
+  box-shadow: ${({ theme }) => `0px 0px 5px 3px ${theme.color.textTertiary}`};
+  background: linear-gradient(to right, rgb(30, 30, 30), rgb(60, 60, 60));
 `;
 
 export const Signature = styled.p`
@@ -83,7 +87,7 @@ export const Signature = styled.p`
 
     &:hover,
     &:focus {
-      color: ${({ theme }) => theme.color.textPrimary};
+      color: ${({ theme }) => theme.color.textSecondary};
 
       svg {
         transform: scale(1.1);

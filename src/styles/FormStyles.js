@@ -12,7 +12,7 @@ export const Title = styled.h1`
 export const Form = styled.form`
   margin: 0 auto 32px;
   padding: 48px 64px;
-  max-width: 500px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +22,11 @@ export const Form = styled.form`
 
   box-shadow: ${({ boxShadowHidden }) =>
     boxShadowHidden ? '' : '0px 0px 20px rgba(0, 0, 0, 0.25);'};
+
+  @media screen and (min-width: 1200px) {
+    width: 500px;
+    max-width: 500px;
+  }
 `;
 
 export const Label = styled.label`
@@ -35,12 +40,14 @@ export const Label = styled.label`
 export const Box = styled.div`
   position: relative;
 
-  width: 100%;
+  margin-bottom: 32px;
+
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
-  &:not(:last-child) {
-    margin-bottom: 24px;
+  &:last-of-type {
+    margin-bottom: 40px;
   }
 `;
 

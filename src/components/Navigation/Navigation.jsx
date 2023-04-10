@@ -5,7 +5,7 @@ import { authSelectors } from 'redux/auth';
 import { NavBar, Logo, LinkList } from './Navigation.styled';
 import { TiContacts } from 'react-icons/ti';
 
-const Navigation = () => {
+export default function Navigation() {
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
 
   return (
@@ -27,6 +27,4 @@ const Navigation = () => {
       </LinkList>
     </NavBar>
   );
-};
-
-export default Navigation;
+}

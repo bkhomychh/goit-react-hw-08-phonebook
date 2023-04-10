@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contactsOperations';
+
+import Modal from 'components/Modal';
+import ContactForm from 'components/ContactForm';
 
 import { Item, Name, Phone, DeleteBtn, EditBtn, Box } from './Contact.styled';
 import { BsTrash3Fill } from 'react-icons/bs';
 import { BiEditAlt } from 'react-icons/bi';
-import { useState } from 'react';
-import Modal from 'components/Modal';
-import { ContactForm } from 'components/ContactForm';
 
-export const Contact = ({ id, name, number }) => {
+export default function Contact({ id, name, number }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -48,7 +49,7 @@ export const Contact = ({ id, name, number }) => {
       )}
     </Item>
   );
-};
+}
 
 Contact.propTypes = {
   id: PropTypes.string.isRequired,

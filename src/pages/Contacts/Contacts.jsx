@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { ContactForm } from 'components/ContactForm';
-import { Filter } from 'components/Filter';
-import { ContactList } from 'components/ContactList';
 
+import ContactForm from 'components/ContactForm';
+import Filter from 'components/Filter';
+import ContactList from 'components/ContactList';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
 
