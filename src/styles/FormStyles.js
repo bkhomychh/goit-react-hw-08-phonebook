@@ -41,14 +41,17 @@ export const Box = styled.div`
   position: relative;
 
   margin-bottom: 32px;
-
-  display: flex;
-  justify-content: space-between;
   width: 100%;
 
   &:last-of-type {
     margin-bottom: 40px;
   }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 `;
 
 export const InputField = styled.input`

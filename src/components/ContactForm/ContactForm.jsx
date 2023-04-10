@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import Button from 'components/Button';
 import {
   Box,
+  Container,
   Check,
   Form,
   InputField,
@@ -117,12 +118,12 @@ export default function ContactForm(props) {
         {formik.touched.number && !formik.errors.number && <Check />}
       </Box>
       {editing ? (
-        <Box>
+        <Container>
           <Button type="submit">Save</Button>
           <Button type="button" onClick={closeModal}>
             Cancel
           </Button>
-        </Box>
+        </Container>
       ) : (
         <Button type="submit">Add contact</Button>
       )}
