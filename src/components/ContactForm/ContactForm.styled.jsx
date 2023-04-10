@@ -15,7 +15,7 @@ export const Form = styled.form`
   color: ${({ theme }) => theme.color.textSecondary};
   background-color: ${({ theme }) => theme.color.bgPrimary};
 
-  box-shadow: 0px 0px 32px 4px rgba(25, 58, 75, 0.2);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   border-radius: 32px;
 `;
 

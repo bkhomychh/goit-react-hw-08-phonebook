@@ -25,15 +25,32 @@ export const ContactList = () => {
   );
 
   return (
-    <Wrapper>
-      {filteredContacts.length > 0 && (
-        <StyledList>
-          {filteredContacts.map(({ id, name, number }) => (
-            <Contact id={id} name={name} number={number} key={id} />
-          ))}
-        </StyledList>
+    <>
+      {filteredContacts.length > 0 ? (
+        <Wrapper>
+          <StyledList>
+            {filteredContacts.map(({ id, name, number }) => (
+              <Contact id={id} name={name} number={number} key={id} />
+            ))}
+          </StyledList>
+          {isLoading && <ContentLoader />}
+        </Wrapper>
+      ) : (
+        <p>There are no contacts :(</p>
       )}
-      {isLoading && <ContentLoader />}
-    </Wrapper>
+    </>
+
+    // <Wrapper>
+    //   {filteredContacts.length > 0 ? (
+    //     <StyledList>
+    //       {filteredContacts.map(({ id, name, number }) => (
+    //         <Contact id={id} name={name} number={number} key={id} />
+    //       ))}
+    //     </StyledList>
+    //   ) : (
+    //     <p>There are no contacts :(</p>
+    //   )}
+    //   {isLoading && <ContentLoader />}
+    // </Wrapper>
   );
 };

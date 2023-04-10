@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 
 import { Item, Name, Phone, DeleteBtn } from './Contact.styled';
+import { BsTrash3Fill } from 'react-icons/bs';
 
 export const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const Contact = ({ id, name, number }) => {
           dispatch(deleteContact({ id, name }));
         }}
       >
-        Delete
+        <BsTrash3Fill />
       </DeleteBtn>
     </Item>
   );

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { BASE_URL } from 'utils/constants';
 
@@ -17,12 +18,28 @@ const token = {
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
+    const toastId = toast.loading('Request in processing');
+
     try {
       const { data } = await axios.post('/users/signup', credentials);
       token.set(data.token);
+      toast.update(toastId, {
+        render: 'Registration was successful',
+        type: 'success',
+        isLoading: false,
+        autoClose: 4000,
+      });
+
       return data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      const errorMessage = err.response.data.message;
+      toast.update(toastId, {
+        render: errorMessage,
+        type: 'error',
+        isLoading: false,
+        autoClose: 4000,
+      });
+      return thunkAPI.rejectWithValue();
     }
   }
 );
@@ -30,25 +47,54 @@ export const register = createAsyncThunk(
 export const logIn = createAsyncThunk(
   'auth/logIn',
   async (credentials, thunkAPI) => {
+    const toastId = toast.loading('Request in processing');
+
     try {
       const { data } = await axios.post('/users/login', credentials);
       token.set(data.token);
+      toast.update(toastId, {
+        render: 'Welcome back!',
+        type: 'success',
+        isLoading: false,
+        autoClose: 4000,
+      });
 
       return data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+    } catch {
+      toast.update(toastId, {
+        render: 'Incorrect credentials',
+        type: 'error',
+        isLoading: false,
+        autoClose: 4000,
+      });
+      return thunkAPI.rejectWithValue();
     }
   }
 );
 
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
+  const toastId = toast.loading('Request in processing');
+
   try {
     const { data } = await axios.post('/users/logout');
     token.clear();
+    toast.update(toastId, {
+      render: 'See you next time',
+      type: 'success',
+      isLoading: false,
+      autoClose: 4000,
+    });
 
     return data;
   } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+    toast.update(toastId, {
+      render: err.message,
+      type: 'error',
+      isLoading: false,
+      autoClose: 4000,
+    });
+
+    return thunkAPI.rejectWithValue();
   }
 });
 

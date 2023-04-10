@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 
 import { NavBar, Logo, LinkList } from './Navigation.styled';
-import { FaPhoneSquareAlt } from 'react-icons/fa';
+import { TiContacts } from 'react-icons/ti';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
@@ -11,7 +11,7 @@ const Navigation = () => {
   return (
     <NavBar>
       <Logo to="/">
-        <FaPhoneSquareAlt />
+        <TiContacts />
         PhoneBook
       </Logo>
 

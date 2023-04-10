@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  padding: 24px 48px;
+  padding: 0 48px;
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
@@ -26,23 +26,31 @@ export const Box = styled.div`
 `;
 
 export const Header = styled.header`
+  position: relative;
+  z-index: 10;
+
+  padding: 24px 0;
+
   background-color: ${({ theme }) => theme.color.bgSecondary};
+  box-shadow: ${({ theme }) => `0px 0px 3px ${theme.color.textSecondary}`};
 `;
 
 export const Main = styled.main`
+  padding: 48px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
 
-  background-color: ${({ theme }) => theme.color.bgSecondary};
+  background-color: ${({ theme }) => theme.color.bgPrimary};
 `;
 
 export const Footer = styled.footer`
-  padding: 8px;
+  padding: 24px 0;
 
   background-color: ${({ theme }) => theme.color.bgSecondary};
+  box-shadow: ${({ theme }) => `0px 0px 3px ${theme.color.textSecondary}`};
 `;
 
 export const Signature = styled.p`
@@ -58,5 +66,19 @@ export const Signature = styled.p`
     align-items: center;
     justify-content: center;
     gap: 8px;
+
+    svg {
+      transition: ${({ theme }) =>
+        `transform 250ms ${theme.transition.primaryCubicBezier}`};
+    }
+
+    &:hover,
+    &:focus {
+      color: ${({ theme }) => theme.color.textPrimary};
+
+      svg {
+        transform: scale(1.1);
+      }
+    }
   }
 `;

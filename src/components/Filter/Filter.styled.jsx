@@ -17,5 +17,7 @@ export const SearchField = styled.input`
   padding: 15px 30px;
 
   font-size: ${({ theme }) => `${theme.fontSize.textSecondary}`};
+  background-color: ${({ theme }) => `${theme.color.bgTertiary}`};
+  box-shadow: ${({ theme }) => `0 0 2px  ${theme.color.textSecondary}`};
   border-radius: 16px;
 `;

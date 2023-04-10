@@ -25,8 +25,9 @@ export const Phone = styled.span`
 `;
 
 export const DeleteBtn = styled.button`
-  padding: 5px 10px;
+  padding: 5px;
   margin-left: auto;
+  display: inline-flex;
 
   font-weight: 700;
   text-transform: uppercase;
@@ -39,7 +40,7 @@ export const DeleteBtn = styled.button`
 
   :hover,
   :focus {
-    background-color: ${({ theme }) => theme.color.bgDanger};
-    color: ${({ theme }) => theme.color.textAccent};
+    background-color: ${({ theme }) => theme.color.bgError};
+    color: ${({ theme }) => theme.color.textPrimary};
   }
 `;

@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
   background-color: ${({ theme }) => theme.color.bgPrimary};
 
-  box-shadow: 0px 141px 200px -80px rgba(25, 58, 75, 0.3);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   border-radius: 32px;
 `;
 

@@ -5,12 +5,14 @@ export const StyledBtn = styled.button`
 
   font-size: ${({ theme }) => theme.fontSize.textSecondary};
   font-weight: 500;
-  border-radius: 12px;
   background-color: ${({ theme }) => theme.color.bgPrimary};
+  border-radius: 12px;
+  box-shadow: ${({ theme }) => `0 0 0px 2px ${theme.color.bgSecondary}`};
 
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.color.bgPrimary};
     background-color: ${({ theme }) => theme.color.bgAccent};
+    box-shadow: none;
   }
 `;

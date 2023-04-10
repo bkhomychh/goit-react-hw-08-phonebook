@@ -19,7 +19,7 @@ export const RegistrationForm = styled.form`
 
   border-radius: 32px;
   background-color: ${({ theme }) => theme.color.bgPrimary};
-  box-shadow: 0px 0px 32px 4px rgba(25, 58, 75, 0.2);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
 `;
 
 export const Label = styled.label`
@@ -44,6 +44,8 @@ export const InputField = styled.input`
   width: 100%;
 
   font-size: ${({ theme }) => `${theme.fontSize.textSecondary}`};
+  line-height: 1.5;
+
   border-bottom: ${({ theme }) => `2px solid ${theme.color.bgSecondary}`};
   transition: ${({ theme }) =>
     `all 250ms ${theme.transition.primaryCubicBezier}`};

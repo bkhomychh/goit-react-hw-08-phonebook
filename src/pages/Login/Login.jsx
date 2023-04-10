@@ -32,8 +32,6 @@ export default function Login() {
         .required('Required'),
     }),
     onSubmit: (values, actions) => {
-      console.log(values);
-      console.log(actions);
       dispatch(authOperations.logIn(values));
     },
   });
