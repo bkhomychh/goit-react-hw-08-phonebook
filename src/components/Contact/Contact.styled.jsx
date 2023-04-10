@@ -24,9 +24,25 @@ export const Phone = styled.span`
   font-weight: 500;
 `;
 
+export const Box = styled.div`
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const EditBtn = styled.button`
+  padding: 5px;
+  display: inline-flex;
+
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: ${({ theme }) => theme.color.bgPrimary};
+  border-radius: 5px;
+`;
+
 export const DeleteBtn = styled.button`
   padding: 5px;
-  margin-left: auto;
   display: inline-flex;
 
   font-weight: 700;
@@ -34,13 +50,8 @@ export const DeleteBtn = styled.button`
   background-color: ${({ theme }) => theme.color.bgPrimary};
   border-radius: 5px;
 
-  cursor: pointer;
-  transition: ${({ theme }) =>
-    `all 250ms ${theme.transition.primaryCubicBezier}`};
-
   :hover,
   :focus {
-    background-color: ${({ theme }) => theme.color.bgError};
-    color: ${({ theme }) => theme.color.textPrimary};
+    color: ${({ theme }) => theme.color.bgError};
   }
 `;

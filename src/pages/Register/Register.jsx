@@ -8,14 +8,14 @@ import * as Yup from 'yup';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import {
   Title,
-  RegistrationForm,
+  Form,
   Label,
   Box,
   InputField,
   PasswordToggle,
   ErrorMessage,
   Check,
-} from './Register.styled';
+} from 'styles/FormStyles';
 
 export default function Register() {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -47,11 +47,7 @@ export default function Register() {
   return (
     <>
       <Title>Registration</Title>
-      <RegistrationForm
-        onSubmit={formik.handleSubmit}
-        autoComplete="off"
-        noValidate
-      >
+      <Form onSubmit={formik.handleSubmit} autoComplete="off" noValidate>
         <Label htmlFor="name">Name</Label>
         <Box>
           <InputField
@@ -109,7 +105,7 @@ export default function Register() {
           {formik.touched.password && !formik.errors.password && <Check />}
         </Box>
         <Button type="submit">Register</Button>
-      </RegistrationForm>
+      </Form>
     </>
   );
 }

@@ -14,7 +14,7 @@ import {
   Signature,
 } from './Layout.styled';
 import { BsGithub } from 'react-icons/bs';
-import { GlobalStyle } from 'utils/globalStyles';
+import { GlobalStyle } from 'styles/GlobalStyles';
 
 const Layout = () => {
   return (

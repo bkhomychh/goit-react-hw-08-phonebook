@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { setFilter } from 'redux/filterSlice';
-import { getFilter } from 'redux/selectors';
+import { setFilter } from 'redux/filter';
+import { filterSelectors } from 'redux/filter';
 
 import { Label, SearchField } from './Filter.styled';
 
 export const Filter = () => {
-  const filter = useSelector(getFilter);
+  const filter = useSelector(filterSelectors.selectFilter);
   const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {

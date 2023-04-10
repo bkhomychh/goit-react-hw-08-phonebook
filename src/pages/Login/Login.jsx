@@ -8,14 +8,14 @@ import Button from 'components/Button';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import {
   Title,
-  LoginForm,
+  Form,
   Label,
   Box,
   InputField,
   PasswordToggle,
   ErrorMessage,
   Check,
-} from './Login.styled';
+} from 'styles/FormStyles';
 
 export default function Login() {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -43,7 +43,7 @@ export default function Login() {
   return (
     <>
       <Title>Login</Title>
-      <LoginForm onSubmit={formik.handleSubmit} autoComplete="off" noValidate>
+      <Form onSubmit={formik.handleSubmit} autoComplete="off" noValidate>
         <Label htmlFor="email">Email</Label>
         <Box>
           <InputField
@@ -83,7 +83,7 @@ export default function Login() {
           {formik.touched.password && !formik.errors.password && <Check />}
         </Box>
         <Button type="submit">Log in</Button>
-      </LoginForm>
+      </Form>
     </>
   );
 }

@@ -23,6 +23,7 @@ Use a better box model (opinionated).
 */
 
 html {
+  height: 100%;
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
@@ -41,6 +42,7 @@ Sections
 
 	body {
 		margin: 0;
+    height: 100%;
 		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 			'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 			sans-serif;

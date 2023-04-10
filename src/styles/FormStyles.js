@@ -19,6 +19,9 @@ export const Form = styled.form`
 
   border-radius: 32px;
   background-color: ${({ theme }) => theme.color.bgPrimary};
+
+  box-shadow: ${({ boxShadowHidden }) =>
+    boxShadowHidden ? '' : '0px 0px 20px rgba(0, 0, 0, 0.25);'};
 `;
 
 export const Label = styled.label`
@@ -31,7 +34,10 @@ export const Label = styled.label`
 
 export const Box = styled.div`
   position: relative;
+
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 
   &:not(:last-child) {
     margin-bottom: 24px;
@@ -62,6 +68,18 @@ export const ErrorMessage = styled.p`
   font-size: 12px;
   font-weight: 500;
   color: ${({ theme }) => theme.color.bgError};
+`;
+
+export const PasswordToggle = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  padding: 4px;
+  display: flex;
+
+  background-color: transparent;
+  transform: translateY(-50%);
 `;
 
 export const Check = styled(BsCheckLg)`

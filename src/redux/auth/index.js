@@ -1,3 +1,3 @@
-export * as authOperations from './authOperations';
+export * from './authSlice';
 export * as authSelectors from './authSelectors';
-export { authPersistedReducer } from './authSlice';
+export * as authOperations from './authOperations';

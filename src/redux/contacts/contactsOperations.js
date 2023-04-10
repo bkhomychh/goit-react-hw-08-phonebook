@@ -2,11 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// import { BASE_URL } from 'constants/api';
-
-// axios.defaults.baseURL = BASE_URL;
-
-const fetchContacts = createAsyncThunk(
+export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
@@ -18,7 +14,7 @@ const fetchContacts = createAsyncThunk(
   }
 );
 
-const addContact = createAsyncThunk(
+export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact, thunkAPI) => {
     try {
@@ -32,7 +28,7 @@ const addContact = createAsyncThunk(
   }
 );
 
-const deleteContact = createAsyncThunk(
+export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async ({ id, name }, thunkAPI) => {
     try {
@@ -46,4 +42,16 @@ const deleteContact = createAsyncThunk(
   }
 );
 
-export { fetchContacts, addContact, deleteContact };
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async ({ id, name, number }, thunkAPI) => {
+    try {
+      const res = await axios.patch(`/contacts/${id}`, { name, number });
+      toast.success(`${name} has been updated`);
+      return res.data;
+    } catch ({ message }) {
+      toast.error(message);
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

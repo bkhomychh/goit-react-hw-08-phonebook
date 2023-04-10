@@ -1,72 +1,40 @@
 import PropTypes from 'prop-types';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { contactsSelectors } from 'redux/contacts';
+import { addContact, editContact } from 'redux/contacts/contactsOperations';
 import { toast } from 'react-toastify';
 
 import Button from 'components/Button';
 import {
   Box,
   Check,
-  ErrorNote,
   Form,
   InputField,
   Label,
   ErrorMessage,
-} from './ContactForm.styled';
+} from 'styles/FormStyles';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export const ContactForm = ({ closeModal }) => {
+export const ContactForm = props => {
+  const {
+    contact: { id, name, number } = {},
+    editing = false,
+    closeModal,
+  } = props;
+
   const toastId = useRef(null);
-
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(contactsSelectors.selectContacts);
   const dispatch = useDispatch();
-
-  // const handleChange = ({ target: { name, value } }) => {
-  //   switch (name) {
-  //     case 'name':
-  //       setName(value);
-  //       break;
-  //     case 'number':
-  //       setNumber(value);
-  //       break;
-  //     default:
-  //       toast.error('This field does not exist');
-  //   }
-  // };
-
-  // const handleSubmit = evt => {
-  //   evt.preventDefault();
-
-  //   const formattedName = name.toLowerCase();
-  //   const isNewContact = contacts.every(
-  //     contact => contact.name.toLowerCase() !== formattedName
-  //   );
-
-  //   if (!isNewContact) {
-  //     if (!toast.isActive(toastId.current)) {
-  //       toastId.current = toast.warn(`${name} is already in your contacts.`);
-  //     }
-  //     return;
-  //   }
-
-  //   dispatch(addContact({ name, number }));
-  //   resetState();
-  //   closeModal();
-  // };
-
-  // const phoneRegExp =
-  //   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const phoneRegExp =
     /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      number: '',
+      name: name ?? '',
+      number: number ?? '',
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -77,21 +45,44 @@ export const ContactForm = ({ closeModal }) => {
         .matches(phoneRegExp, 'Phone number is not valid')
         .required('Required'),
     }),
-    onSubmit(values) {
-      // dispatch(addContact(values));
-      console.log(values);
+    onSubmit(values, { resetForm }) {
+      const formattedName = values.name.toLowerCase();
+      const isNewContact = contacts.every(
+        contact => contact.name.toLowerCase() !== formattedName
+      );
+
+      if (!isNewContact && !editing) {
+        if (!toast.isActive(toastId.current)) {
+          toastId.current = toast.warn(
+            `${values.name} is already in your contacts.`
+          );
+        }
+        return;
+      }
+
+      if (editing) {
+        dispatch(editContact({ id, ...values }));
+      } else {
+        dispatch(addContact({ ...values }));
+      }
+      resetForm();
+      closeModal();
     },
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit} autoComplete="off" noValidate>
+    <Form
+      onSubmit={formik.handleSubmit}
+      boxShadowHidden
+      autoComplete="off"
+      noValidate
+    >
       <Label htmlFor="name">Name</Label>
       <Box>
         <InputField
           id="name"
           type="text"
           name="name"
-          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           value={formik.values.name}
           onBlur={formik.handleBlur}
@@ -124,8 +115,16 @@ export const ContactForm = ({ closeModal }) => {
         {/* Success */}
         {formik.touched.number && !formik.errors.number && <Check />}
       </Box>
-
-      <Button type="submit">Add contact</Button>
+      {editing ? (
+        <Box>
+          <Button type="submit">Save</Button>
+          <Button type="button" onClick={closeModal}>
+            Cancel
+          </Button>
+        </Box>
+      ) : (
+        <Button type="submit">Add contact</Button>
+      )}
     </Form>
   );
 };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 
@@ -11,9 +12,9 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   padding: 0 48px;
   margin: 0 auto;
-  max-width: 1200px;
   width: 100%;
   height: 100%;
+  max-width: 1200px;
 
   font-size: ${({ theme }) => theme.fontSize.textPrimary};
 `;
@@ -37,10 +38,6 @@ export const Header = styled.header`
 
 export const Main = styled.main`
   padding: 48px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   flex-grow: 1;
 
   background-color: ${({ theme }) => theme.color.bgPrimary};
