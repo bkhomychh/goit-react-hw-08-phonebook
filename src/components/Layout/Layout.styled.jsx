@@ -49,6 +49,8 @@ export const Header = styled.header`
 `;
 
 export const Main = styled.main`
+  position: relative;
+
   padding: 48px 0;
   flex-grow: 1;
   min-width: 480px;

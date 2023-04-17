@@ -15,6 +15,8 @@ import {
 } from './Layout.styled';
 import { BsGithub } from 'react-icons/bs';
 import { GlobalStyle } from 'styles/GlobalStyles';
+import { Suspense } from 'react';
+import ContentLoader from 'components/ContentLoader';
 
 const Layout = () => {
   return (
@@ -31,7 +33,9 @@ const Layout = () => {
 
         <Main>
           <Container>
-            <Outlet />
+            <Suspense fallback={<ContentLoader />}>
+              <Outlet />
+            </Suspense>
           </Container>
         </Main>
 
