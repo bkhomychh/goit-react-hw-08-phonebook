@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contacts/contactsOperations';
+import { useDeleteContactMutation } from 'services/contactsApi';
 
 import Modal from 'components/Modal';
 import ContactForm from 'components/ContactForm';
@@ -9,11 +8,21 @@ import ContactForm from 'components/ContactForm';
 import { Item, Name, Phone, DeleteBtn, EditBtn, Box } from './Contact.styled';
 import { BsTrash3Fill } from 'react-icons/bs';
 import { BiEditAlt } from 'react-icons/bi';
+import { toast } from 'react-toastify';
+import { getErrorMessage } from 'utils';
 
 export default function Contact({ id, name, number }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [deleteContact] = useDeleteContactMutation();
 
+  const handleClick = () => {
+    deleteContact({ id, name })
+      .unwrap()
+      .then(({ name }) =>
+        toast.success(`${name} has been deleted from your contacts`)
+      )
+      .catch(err => toast.error(getErrorMessage(err)));
+  };
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -29,12 +38,7 @@ export default function Contact({ id, name, number }) {
         <EditBtn type="button" onClick={openModal}>
           <BiEditAlt />
         </EditBtn>
-        <DeleteBtn
-          type="button"
-          onClick={() => {
-            dispatch(deleteContact({ id, name }));
-          }}
-        >
+        <DeleteBtn type="button" onClick={handleClick}>
           <BsTrash3Fill />
         </DeleteBtn>
       </Box>

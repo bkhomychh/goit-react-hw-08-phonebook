@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -16,8 +15,12 @@ import {
   ErrorMessage,
 } from 'styles/FormStyles';
 
-import { contactsSelectors } from 'redux/contacts';
-import { addContact, editContact } from 'redux/contacts/contactsOperations';
+import {
+  useAddContactMutation,
+  useEditContactMutation,
+  useFetchContactsQuery,
+} from 'services/contactsApi';
+import { getErrorMessage } from 'utils';
 
 export default function ContactForm(props) {
   const {
@@ -26,9 +29,11 @@ export default function ContactForm(props) {
     closeModal,
   } = props;
 
+  const { data = [] } = useFetchContactsQuery();
+  const [addContact] = useAddContactMutation();
+  const [editContact] = useEditContactMutation();
+
   const toastId = useRef(null);
-  const contacts = useSelector(contactsSelectors.selectContacts);
-  const dispatch = useDispatch();
 
   const phoneRegExp =
     /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
@@ -49,7 +54,7 @@ export default function ContactForm(props) {
     }),
     onSubmit(values, { resetForm }) {
       const formattedName = values.name.toLowerCase();
-      const isNewContact = contacts.every(
+      const isNewContact = data.every(
         contact => contact.name.toLowerCase() !== formattedName
       );
 
@@ -63,9 +68,19 @@ export default function ContactForm(props) {
       }
 
       if (editing) {
-        dispatch(editContact({ id, ...values }));
+        editContact({ id, ...values })
+          .unwrap()
+          .then(({ name }) => toast.success(`${name} has been edited`))
+          .catch(err => {
+            toast.error(getErrorMessage(err));
+          });
       } else {
-        dispatch(addContact({ ...values }));
+        addContact({ ...values })
+          .unwrap()
+          .then(({ name }) =>
+            toast.success(`${name} has been added to your contacts`)
+          )
+          .catch(err => toast.error(getErrorMessage(err)));
       }
       resetForm();
       closeModal();

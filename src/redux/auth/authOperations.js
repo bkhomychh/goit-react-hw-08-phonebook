@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import updateToast from 'utils/updateToast';
-import { BASE_URL } from 'utils/constants';
+import { updateToast } from 'utils';
+import { BASE_URL } from 'utils';
 
 axios.defaults.baseURL = BASE_URL;
 
