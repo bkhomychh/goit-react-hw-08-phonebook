@@ -24,7 +24,7 @@ export const AuthLinks = styled.ul`
     padding: 8px 24px;
     height: 100%;
 
-    font-size: ${({ theme }) => theme.fontSize.textSecondary};
+    font-size: ${({ theme }) => theme.fontSize.textTertiary};
     font-weight: 500;
     color: ${({ theme }) => theme.color.textPrimary};
     background-color: ${({ theme }) => theme.color.bgPrimary};

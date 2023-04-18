@@ -6,7 +6,8 @@ export const StyledBtn = styled.button`
   align-items: center;
   gap: 4px;
 
-  font-size: ${({ theme }) => theme.fontSize.textSecondary};
+  color: ${({ theme }) => theme.color.textPrimary};
+  font-size: ${({ theme }) => theme.fontSize.textTertiary};
   font-weight: 500;
   background-color: ${({ theme }) => theme.color.bgPrimary};
   border-radius: 12px;

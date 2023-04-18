@@ -32,8 +32,10 @@ export default function Contact({ id, name, number }) {
 
   return (
     <Item>
-      <Name>{name}:</Name>
-      <Phone>{number}</Phone>
+      <Box>
+        <Name>{name}:</Name>
+        <Phone>{number}</Phone>
+      </Box>
       <Box>
         <EditBtn type="button" onClick={openModal}>
           <BiEditAlt />

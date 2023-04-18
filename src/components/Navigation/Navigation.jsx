@@ -2,19 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 
-import { NavBar, Logo, LinkList } from './Navigation.styled';
-import { TiContacts } from 'react-icons/ti';
+import { NavBar, LinkList } from './Navigation.styled';
 
 export default function Navigation() {
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
 
   return (
     <NavBar>
-      <Logo to="/">
-        <TiContacts />
-        PhoneBook
-      </Logo>
-
       <LinkList>
         <li>
           <NavLink to="/">Home</NavLink>

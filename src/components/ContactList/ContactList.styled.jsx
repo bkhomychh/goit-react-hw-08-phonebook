@@ -24,7 +24,6 @@ export const StyledList = styled.ul`
   padding: 20px 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 10px;
 
   font-size: ${({ theme }) => theme.fontSize.textSecondary};

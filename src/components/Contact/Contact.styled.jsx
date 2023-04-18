@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const Item = styled.li`
-  display: flex;
-  align-items: baseline;
-  gap: 20px;
   padding: 10px 20px;
+  display: grid;
+  grid-template: 1fr / 1fr auto;
+  align-items: stretch;
+  align-content: stretch;
+  grid-gap: 20px;
 
   border: none;
 
@@ -16,7 +18,6 @@ export const Item = styled.li`
 export const Name = styled.span`
   font-size: ${({ theme }) => theme.fontSize.textPrimary};
   font-weight: 700;
-  line-height: calc(24 / 20);
 `;
 
 export const Phone = styled.span`
@@ -25,10 +26,14 @@ export const Phone = styled.span`
 `;
 
 export const Box = styled.div`
-  margin-left: auto;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  flex-wrap: wrap;
   gap: 8px;
+
+  &:last-child {
+    align-self: flex-start;
+  }
 `;
 
 export const EditBtn = styled.button`

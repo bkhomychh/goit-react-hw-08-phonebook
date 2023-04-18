@@ -19,6 +19,7 @@ export const theme = {
     headingSecondary: '24px',
     textPrimary: '20px',
     textSecondary: '18px',
+    textTertiary: '16px',
   },
   transition: {
     primaryCubicBezier: 'cubic-bezier(0.4, 0, 0.2, 1)',

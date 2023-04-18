@@ -5,6 +5,7 @@ import Button from 'components/Button';
 
 import { authSelectors } from 'redux/auth';
 import { logOut } from 'redux/auth/authOperations';
+import { contactsApi } from 'services/contactsApi';
 
 import { Wrapper, Username, AuthLinks } from './UserMenu.styled';
 
@@ -15,6 +16,7 @@ export default function UserMenu() {
 
   const handleLogOut = () => {
     dispatch(logOut());
+    dispatch(contactsApi.util.resetApiState());
   };
 
   return (
